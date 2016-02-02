@@ -14,4 +14,3 @@ let extract k xs =
   in
   let emit x acc = x :: acc in
     aux k [] emit xs
-
