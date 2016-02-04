@@ -1,5 +1,5 @@
 (*
-  Sorting a list of lists according to length oth sublists.
+  Sorting a list of lists according to length of sublists.
 *)
 (* Define quick sort not to use List.sort *)
 let rec qsort f = function
