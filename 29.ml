@@ -24,4 +24,4 @@ let is_prime x =
     else sieve (n+1) last (filter (fun x -> x mod n != 0) primes)
   in
   let primes = sieve 2 last (range 2 x) in
-  List.nth primes (List.length primes - 1) = x
+  filter (fun y -> y = x ) primes != []
