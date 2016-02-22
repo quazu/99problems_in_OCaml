@@ -56,3 +56,13 @@ let goldbach_list n m =
   range n m
     |> filter is_even
     |> map (fun x -> x, goldbach x)
+
+let goldbach_limit n m lim =
+  let over lim x =
+    match x with
+      | _, None -> false
+      | _, Some(p, q) -> p > lim && q > lim
+  in
+  goldbach_list n m
+    |> filter (over lim)
+
