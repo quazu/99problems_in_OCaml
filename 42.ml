@@ -2,7 +2,7 @@
   Gray code.
 *)
 
-(* Append character at the end of string *)
+(* Append character at the beginning of string *)
 let append c str =
   (String.make 1 c) ^ str
 
