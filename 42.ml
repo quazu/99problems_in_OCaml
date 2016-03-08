@@ -2,22 +2,7 @@
   Gray code.
 *)
 
-(* Append character at the beginning of string *)
-let append c str =
-  (String.make 1 c) ^ str
-
-let rec gray n =
-  if n = 1
-    then ["0"; "1"]
-  else (List.map (append '0') (gray (n - 1))) @
-       (List.map (append '1') (gray (n - 1)))
-
-
-(*
-  Another gray code.
-*)
-
-(* Encompass lists *)
+(* Encompass two lists *)
 let encompass f xs ys =
   let rec loop f xs acc = function
     | [] -> acc
