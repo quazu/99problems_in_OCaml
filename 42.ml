@@ -18,16 +18,16 @@ let rec gray n =
 *)
 
 (* Encompass lists *)
-let encompass xs ys =
-  let rec loop xs acc = function
+let encompass f xs ys =
+  let rec loop f xs acc = function
     | [] -> acc
-    | h :: t -> loop xs (List.map ((^) h) xs :: acc) t
+    | h :: t -> loop f xs (List.map (f h) xs :: acc) t
   in
   let rec flatten = function
     | [] -> []
     | l::r -> l @ flatten r
   in
-  loop xs [] ys
+  loop f xs [] ys
     |> flatten
 
 let gray n =
@@ -35,6 +35,6 @@ let gray n =
   let rec loop acc n =
     if n = 1
       then acc
-    else loop (encompass bits acc) (n - 1)
+    else loop (encompass (^) bits acc) (n - 1)
   in
   loop bits n
