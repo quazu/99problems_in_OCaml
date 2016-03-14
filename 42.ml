@@ -8,9 +8,21 @@ let encompass f xs ys =
     | [] -> acc
     | h :: t -> loop f xs (List.map (f h) xs :: acc) t
   in
-  let rec flatten = function
-    | [] -> []
-    | l::r -> l @ flatten r
+  let prepend xs ys =
+    let rec loop xs ys acc = match xs, ys with
+      | [], [] -> List.rev acc
+      | h :: t, _ -> loop t ys (h :: acc)
+      | [], h :: t -> loop [] t (h :: acc)
+    in
+    loop xs ys []
+  in
+  let flatten lst =
+    let rec loop acc = function
+      | [] -> List.rev acc
+      | (h :: t) :: r -> loop (h :: acc) (prepend [t] r)
+      | [] :: r -> loop acc r
+    in
+    loop [] lst
   in
   loop f xs [] ys
     |> flatten
